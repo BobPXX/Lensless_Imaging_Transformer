@@ -1,0 +1,32 @@
+basic:
+  input_size: 1600
+  output_size: 500
+  seed: 1
+
+loss:
+  MSE_t: 1
+  LPIPS_t: 0
+
+dir:
+  save_model_dir: /home/pan/Desktop/vit_rec/Rec_Transformer0824/checkpoints/1007.pth
+  load_model_dir: /home/pan/Desktop/vit_rec/Rec_Transformer0824/checkpoints/1007.pth
+  val_pattern_dir: /home/pan/Desktop/vit_rec/Rec_Transformer0824/im1.npy
+  val_rec_dir: /home/pan/Desktop/vit_rec/Rec_Transformer0824/checkpoints/
+  dataset_dir: /home/pan/Desktop/vit_rec/Rec_Transformer0824/datasets/
+
+
+train:
+  GPU_num: 2
+  load: True
+  num_steps: 450000
+  eval_every: 15000
+  train_batch_size: 4
+
+optimizer:
+  optimizer: AdamW
+  learning_rate: 5e-6
+  weight_decay: 0.01
+
+scheduler:
+  use: True
+  warmup_steps: 0
