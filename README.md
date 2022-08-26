@@ -5,8 +5,14 @@
 
 **DOI: https://doi.org/10.1364/OL.455378**
 
-**```ol-47-7-1843.pdf``` is the paper.**
+```ol-47-7-1843.pdf``` is the paper.
 
+**News Reports related to this paper (English & Japanese)**:
+[WIRED](https://wired.jp/article/mask-based-lensless-imaging/),
+[Nikkei](https://www.nikkei.com/article/DGXZQOUC12CUO0S2A510C2000000/),
+[Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
+[EurekAlert!](https://www.eurekalert.org/news-releases/951125),
+[Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
 
 
 # USAGE
