@@ -14,6 +14,35 @@
 [EurekAlert!](https://www.eurekalert.org/news-releases/951125),
 [Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
 
+# DATASET
+The datasets are available in [Yamaguchi Lab OneDrive](https://1drv.ms/u/s!AjbGbGU9gDA1gcB9wd16MYOoPicCIw?e=dlsrxx) (*It may be a temporary place, we are trying to seek a permanent place if many people are interested in it.*)
+
+There are three datasets:
+1. mirflickr25k
+  - encoded pattern: 
+    - **mirflickr25k_1600.zip** in the OneDrive
+  - original images: 
+    - available in this [link](https://www.kaggle.com/datasets/paulrohan2020/mirflickr25k?resource=download)
+  - pattern-image matchup: 
+    - the corresponding encoded pattern and original image have the same name, only different in file extension. e.g., pattern "im1.npy"<-> image "im1.jpg".
+2. dogs-vs-cats
+  - encoded pattern: 
+    - **PetImages_1600.zip** in the OneDrive
+  - original images: 
+    - available in this [link](https://www.kaggle.com/competitions/dogs-vs-cats/data), only 25k images in train folder are used.
+  - pattern-image matchup: 
+    - encoded patterns of dog & cat are separated to different folders. e.g., pattern "Cat/0.npy"<-> image "cat.0.jpg", pattern "Dog/1965.npy"<-> image "dog.1965.jpg"
+3. fruits
+  - encoded pattern: 
+    - **fruits_modified.zip** in the OneDrive
+  - original images: 
+    - **fruits_modifiedori.zip** in the OneDrive
+  - pattern-image matchup: 
+    - same name, only different in file extension. e.g., pattern "n07739125_7447.npy"<-> image "n07739125_7447.JPEG".
+
+
+The data collection method is written in page 3 of the [original paper](https://github.com/BobPXX/Lensless_Imaging_Transformer/blob/main/ol-47-7-1843.pdf). The program to control the sensor for data collection is available in [my another repository](https://github.com/BobPXX/IDS_sensor_control).
+
 
 # USAGE
 ## Training
