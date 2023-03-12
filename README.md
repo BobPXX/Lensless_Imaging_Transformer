@@ -69,16 +69,16 @@ Checkpoint (```checkpoints/best.pth```) and input patterns (```result/in-wild/pa
 ```GrayPSF.npy``` is PSF of our lensless camera. It is not used in this reconstruction method, but a useful file to evaluate status of the optical system.
 
 # MESSAGE
-I am working in productizing lensless camera. Here are some potential applications:
-1. replace traditional camera in scenarios where space, weight or cost are extremely imposed, e.g., 
+I am working on productizing lensless camera. Here are some potential applications:
+1. Replace traditional camera in scenarios where space, weight or cost is extremely imposed, e.g., 
     - cost-senitive IoT devices, 
     - under-screen camera, 
     - a space that is too limited for placing a traditional camera.
     - ...
-2. invisible spectrum (e.g, gama-ray, X-ray) imaging. 
-    - (With lens, invisible spectrum imaging is too expensive or impossible for traditional lensed camera)
-3. optics-level privacy-preserving and cryptographic imaging/sensing
-    - the captured encoded pattern is uninterpretable for human, we are taking this feature to develop privacy pretection and encryption.
-    - my another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer), verified that the directly object recognition on the uninterpretable encoded pattern is possible.
+2. Invisible spectrum (e.g, gama-ray, X-ray) imaging
+    - With lens, invisible spectrum imaging is too expensive or impossible for traditional lensed camera
+3. Optics-level privacy-preserving and cryptographic imaging/sensing
+    - The captured encoded pattern is uninterpretable for human. We take this feature to develop privacy pretection and encryption.
+    - My another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer) verified that direct object recognition on the uninterpretable encoded pattern is possible.
 
 You are warmly welcome to join me for production development or extended research. You are also welcome for any question or discussion. Please contact me through [My LinkedIn homepage](https://www.linkedin.com/in/xiuxi-pan-ph-d-aa8868222/) or email. 
