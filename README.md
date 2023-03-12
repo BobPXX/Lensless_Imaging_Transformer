@@ -5,7 +5,7 @@
 
 **DOI: https://doi.org/10.1364/OL.455378**
 
-```ol-47-7-1843.pdf``` is the paper.
+[```ol-47-7-1843.pdf```](./ol-47-7-1843.pdf) is the paper.
 
 **News Reports related to this paper (English & Japanese)**:
 [WIRED](https://wired.jp/article/mask-based-lensless-imaging/),
@@ -13,6 +13,9 @@
 [Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
 [EurekAlert!](https://www.eurekalert.org/news-releases/951125),
 [Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
+
+![pipeline](./utils/diagram1.png)
+![hardware for experiment](./utils/diagram2.png)
 
 # DATASET
 The datasets are available in [Yamaguchi Lab OneDrive](https://1drv.ms/u/s!AjbGbGU9gDA1gcB9wd16MYOoPicCIw?e=dlsrxx) (*It may be a temporary place, we are trying to seek a permanent place if many people are interested in it.*)
@@ -64,3 +67,18 @@ Checkpoint (```checkpoints/best.pth```) and input patterns (```result/in-wild/pa
 
 ## Note
 ```GrayPSF.npy``` is PSF of our lensless camera. It is not used in this reconstruction method, but a useful file to evaluate status of the optical system.
+
+# MESSAGE
+I am working in productizing lensless camera. Here are some potential applications:
+1. replace traditional camera in scenarios where space, weight or cost are extremely imposed, e.g., 
+    - cost-senitive IoT devices, 
+    - under-screen camera, 
+    - a space that is too limited for placing a traditional camera.
+    - ...
+2. invisible spectrum (e.g, gama-ray, X-ray) imaging. 
+    - (With lens, invisible spectrum imaging is too expensive or impossible for traditional lensed camera)
+3. optics-level privacy-preserving and cryptographic imaging/sensing
+    - the captured encoded pattern is uninterpretable for human, we are taking this feature to develop privacy pretection and encryption.
+    - my another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer), verified that the directly object recognition on the uninterpretable encoded pattern is possible.
+
+You are warmly welcome to join me for production development or extended research. You are also welcome for any question or discussion. Please contact me through [My LinkedIn homepage](https://www.linkedin.com/in/xiuxi-pan-ph-d-aa8868222/) or email. 
