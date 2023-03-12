@@ -24,8 +24,8 @@ train:
 
 optimizer:
   optimizer: AdamW
-  learning_rate: 5e-6
-  weight_decay: 0.01
+  learning_rate: 6e-5
+  weight_decay: 0.1
 
 scheduler:
   use: True
