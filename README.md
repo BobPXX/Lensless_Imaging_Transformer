@@ -7,12 +7,19 @@
 
 [```ol-47-7-1843.pdf```](./ol-47-7-1843.pdf) is the paper.
 
-**News Reports related to this paper (English & Japanese)**:
+**News Reports related to this paper**:
+
 [WIRED](https://wired.jp/article/mask-based-lensless-imaging/),
 [Nikkei](https://www.nikkei.com/article/DGXZQOUC12CUO0S2A510C2000000/),
 [Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
 [EurekAlert!](https://www.eurekalert.org/news-releases/951125),
 [Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
+
+**Awards related to this paper**:
+
+[2022年度（令和4年度）手島精一記念研究賞 留学生研究賞](https://www.titech.ac.jp/news/2023/066259),
+
+[第38回 (2022年度) 電気通信普及財団賞 テレコムシステム技術学生賞](https://www.taf.or.jp/files/2061/1639009500.pdf)
 
 ![pipeline](./utils/diagram1.png)
 ![hardware for experiment](./utils/diagram2.png)
