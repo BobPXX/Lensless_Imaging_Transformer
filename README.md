@@ -19,7 +19,7 @@
 
 [2022年度（令和4年度）手島精一記念研究賞 留学生研究賞](https://www.titech.ac.jp/news/2023/066259),
 
-[第38回 (2022年度) 電気通信普及財団賞 テレコムシステム技術学生賞](https://www.taf.or.jp/files/2061/1639009500.pdf)
+[第38回 (2022年度) 電気通信普及財団賞 テレコムシステム技術学生賞](https://www.taf.or.jp/files/2061/979456817.pdf)
 
 ![pipeline](./utils/diagram1.png)
 ![hardware for experiment](./utils/diagram2.png)
