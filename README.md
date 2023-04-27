@@ -78,12 +78,12 @@ Checkpoint (```checkpoints/best.pth```) and input patterns (```result/in-wild/pa
 # MESSAGE
 I am working on productizing lensless camera. Here are some potential applications:
 1. Replace traditional camera in scenarios where space, weight or cost is extremely imposed, e.g., 
-    - cost-senitive IoT devices, 
+    - cost-sensitive IoT devices, 
     - under-screen camera, 
     - a space that is too limited for placing a traditional camera.
     - ...
 2. Invisible spectrum (e.g, gama-ray, X-ray) imaging
-    - With lens, invisible spectrum imaging is too expensive or impossible for traditional lensed camera
+    - Invisible spectrum imaging is too expensive or impossible for traditional lensed camera because of the usage of lens.
 3. Optics-level privacy-preserving and cryptographic imaging/sensing
     - The captured encoded pattern is uninterpretable for human. We take this feature to develop privacy pretection and encryption.
     - My another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer) verified that direct object recognition on the uninterpretable encoded pattern is possible.
