@@ -17,12 +17,27 @@
 
 **Awards related to this paper**:
 
-[2022年度（令和4年度）手島精一記念研究賞 留学生研究賞](https://www.titech.ac.jp/news/2023/066259),
+[2022年度（令和4年度）手島精一記念研究賞](https://www.titech.ac.jp/news/2023/066259),
 
-[第38回 (2022年度) 電気通信普及財団賞 テレコムシステム技術学生賞](https://www.taf.or.jp/files/2061/979456817.pdf)
+[第38回 (2022年度) 電気通信普及財団賞](https://www.taf.or.jp/files/2061/979456817.pdf)
 
 ![pipeline](./utils/diagram1.png)
 ![hardware for experiment](./utils/diagram2.png)
+
+# MESSAGE
+Lensless camera based on this paper has been productized and commercialized. Here are some potential applications:
+1. Replace traditional camera in scenarios where space, weight or cost is extremely imposed, e.g., 
+    - cost-sensitive IoT devices, 
+    - under-screen camera, 
+    - a space that is too limited for placing a traditional camera.
+    - ...
+2. Invisible spectrum (e.g, gama-ray, X-ray) imaging
+    - Invisible spectrum imaging is too expensive or impossible for traditional lensed camera because of the usage of lens.
+3. Optics-level privacy-preserving and cryptographic imaging/sensing
+    - The captured encoded pattern is uninterpretable for human. We take this feature to develop privacy pretection and encryption.
+    - My another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer) verified that direct object recognition on the uninterpretable encoded pattern is possible.
+
+You are warmly welcome to join me for further production development or extended research. You are also welcome for any question or discussion. Please contact me through [My LinkedIn homepage](https://www.linkedin.com/in/xiuxi-pan-ph-d-aa8868222/) or email. 
 
 # DATASET
 The datasets are available in [Yamaguchi Lab OneDrive](https://1drv.ms/u/s!AjbGbGU9gDA1gcB9wd16MYOoPicCIw?e=dlsrxx) (*It may be a temporary place, we are trying to seek a permanent place if many people are interested in it.*)
@@ -74,18 +89,3 @@ Checkpoint (```checkpoints/best.pth```) and input patterns (```result/in-wild/pa
 
 ## Note
 ```GrayPSF.npy``` is PSF of our lensless camera. It is not used in this reconstruction method, but a useful file to evaluate status of the optical system.
-
-# MESSAGE
-I am working on productizing lensless camera. Here are some potential applications:
-1. Replace traditional camera in scenarios where space, weight or cost is extremely imposed, e.g., 
-    - cost-sensitive IoT devices, 
-    - under-screen camera, 
-    - a space that is too limited for placing a traditional camera.
-    - ...
-2. Invisible spectrum (e.g, gama-ray, X-ray) imaging
-    - Invisible spectrum imaging is too expensive or impossible for traditional lensed camera because of the usage of lens.
-3. Optics-level privacy-preserving and cryptographic imaging/sensing
-    - The captured encoded pattern is uninterpretable for human. We take this feature to develop privacy pretection and encryption.
-    - My another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer) verified that direct object recognition on the uninterpretable encoded pattern is possible.
-
-You are warmly welcome to join me for production development or extended research. You are also welcome for any question or discussion. Please contact me through [My LinkedIn homepage](https://www.linkedin.com/in/xiuxi-pan-ph-d-aa8868222/) or email. 
