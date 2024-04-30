@@ -3,9 +3,10 @@
 
 **Authors: Xiuxi Pan, Xiao Chen, Saori Takeyama, Masahiro Yamaguchi**
 
-**DOI: https://doi.org/10.1364/OL.455378**
+DOI: https://doi.org/10.1364/OL.455378
 
 [```ol-47-7-1843.pdf```](./ol-47-7-1843.pdf) is the paper.
+
 
 **News Reports related to this paper**:
 
@@ -14,6 +15,7 @@
 [Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
 [EurekAlert!](https://www.eurekalert.org/news-releases/951125),
 [Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
+
 
 **Awards related to this paper**:
 
@@ -24,8 +26,9 @@
 ![pipeline](./utils/diagram1.png)
 ![hardware for experiment](./utils/diagram2.png)
 
+
 # MESSAGE
-Lensless camera based on this paper has been productized and commercialized. Here are some potential applications:
+Lensless Camera based on this paper has been productized and commercialized. Here are some potential applications:
 1. Replace traditional camera in scenarios where space, weight or cost is extremely imposed, e.g., 
     - cost-sensitive IoT devices, 
     - under-screen camera, 
