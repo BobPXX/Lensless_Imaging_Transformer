@@ -15,3 +15,6 @@ env/
 log/
 runs/
 *.pth
+
+# Auto-generated dataset filename lists (produced by scripts/prepare_dataset.py)
+datasets/*.npy

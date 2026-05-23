@@ -75,7 +75,7 @@ The data collection method is written in page 3 of the [original paper](https://
 # USAGE
 ## Training
 1. `scripts/prepare_dataset.py` writes the filename-list `.npy` files into `datasets/`. Edit `pattern_path` / `ori_path` inside the script first.
-2. `configs/configs.yaml` defines training settings (edit the paths there too).
+2. `configs/default.yaml` defines training settings (edit the paths there too).
 3. Launch from repo root:
    ```bash
    CUDA_VISIBLE_DEVICES=0,1 python -m scripts.train
@@ -86,11 +86,11 @@ The data collection method is written in page 3 of the [original paper](https://
 ```bash
 python -m scripts.predict \
     --checkpoint checkpoints/best.pth \
-    --input-dir result/in-wild/pattern/ \
-    --output-dir result/in-wild/rec/
+    --input-dir results/in-wild/patterns/ \
+    --output-dir results/in-wild/reconstructions/
 ```
 
-The provided checkpoint `checkpoints/best.pth` and the patterns under `result/in-wild/pattern/` and `result/on-screen/pattern/` can be used to reproduce results.
+The provided checkpoint `checkpoints/best.pth` and the patterns under `results/in-wild/patterns/` and `results/on-screen/patterns/` can be used to reproduce results.
 
 ## Note
 ```GrayPSF.npy``` is PSF of our lensless camera. It is not used in this reconstruction method, but a useful file to evaluate status of the optical system.

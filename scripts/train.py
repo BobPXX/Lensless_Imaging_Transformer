@@ -211,7 +211,7 @@ def train(cfg):
     logger.info("End Training!")
 
 def main():
-    cfg = OmegaConf.load('configs/configs.yaml')
+    cfg = OmegaConf.load('configs/default.yaml')
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
                         datefmt='%m/%d/%Y %H:%M:%S',
