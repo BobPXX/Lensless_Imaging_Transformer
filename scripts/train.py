@@ -1,20 +1,15 @@
-import os
-#os.environ["CUDA_VISIBLE_DEVICES"] = '2,3'
-
 import random
 import logging
 import numpy as np
 import torch
 from tqdm import tqdm
 from omegaconf import OmegaConf
-import torch.distributed as dist
 from tensorboardX import SummaryWriter
-#import lpips
 import cv2
 
-from model import Rec_Transformer
-from utils.scheduler import WarmupCosineSchedule
-from utils.data_utils import get_loader
+from lensless_imaging_transformer.model import RecTransformer
+from lensless_imaging_transformer.scheduler import WarmupCosineSchedule
+from lensless_imaging_transformer.data_utils import get_loader
 
 writer = SummaryWriter('log')
 logger = logging.getLogger(__name__)
@@ -53,7 +48,7 @@ def load_model(cfg, model):
 
 
 def setup(cfg):
-    model = Rec_Transformer()
+    model = RecTransformer()
     num_params = count_parameters(model)
     logger.info("Total Parameter: \t%2.1fM" % num_params)
 
@@ -86,17 +81,12 @@ def valid(cfg, model, val_loader, global_step):
                           dynamic_ncols=True)
     MSE = torch.nn.MSELoss()
     MSE.cuda()
-    #LPIPS = lpips.LPIPS(net='alex')
-    #LPIPS.cuda()
     for step, batch in enumerate(epoch_iterator):
         batch = tuple(t.cuda() for t in batch)
         x, y = batch
         with torch.no_grad():
             outputs = model(x)
-            MSE_loss=MSE(outputs, y.to(torch.float))
-            #LPIPS_loss=LPIPS(outputs, y.to(torch.float))
-            #eval_loss = cfg.loss.MSE_t * MSE_loss + cfg.loss.LPIPS_t * LPIPS_loss
-            eval_loss = cfg.loss.MSE_t * MSE_loss
+            eval_loss = cfg.loss.MSE_t * MSE(outputs, y.to(torch.float))
             eval_losses.update(eval_loss.item())
 
         epoch_iterator.set_description("Validating... (loss=%2.5f)" % eval_losses.val)
@@ -136,10 +126,12 @@ def train(cfg):
                                     lr=cfg.optimizer.learning_rate,
                                     momentum=0.9,
                                     weight_decay=cfg.optimizer.weight_decay)
-    if cfg.optimizer.optimizer == 'AdamW':
+    elif cfg.optimizer.optimizer == 'AdamW':
         optimizer = torch.optim.AdamW(model.parameters(),
                                       lr=cfg.optimizer.learning_rate,
                                       weight_decay=cfg.optimizer.weight_decay)
+    else:
+        raise ValueError(f"Unknown optimizer: {cfg.optimizer.optimizer}")
     t_total = cfg.train.num_steps
 
     scheduler = WarmupCosineSchedule(optimizer, warmup_steps=cfg.scheduler.warmup_steps, t_total=t_total)
@@ -148,16 +140,15 @@ def train(cfg):
     losses = AverageMeter()
     MSE = torch.nn.MSELoss()
     MSE.cuda()
-    #LPIPS = lpips.LPIPS(net='alex')
-    #LPIPS.cuda()
-    global_step=0
-    best_losses = 999999
+    global_step = 0
+    best_losses = float('inf')
 
     # Train!
     logger.info("***** Running training *****")
     logger.info("  Total optimization steps = %d", cfg.train.num_steps)
     logger.info("  Instantaneous batch size per GPU = %d", cfg.train.train_batch_size)
-    while True:
+    done = False
+    while not done:
         model.train()
         epoch_iterator = tqdm(train_loader,
                               desc="Training (X / X Steps) (loss=X.X)",
@@ -169,15 +160,11 @@ def train(cfg):
 
             outputs = model(x)
 
-            MSE_loss = MSE(outputs, y.to(torch.float))
-            #LPIPS_loss = LPIPS(outputs, y.to(torch.float))
-            #loss = cfg.loss.MSE_t * MSE_loss + cfg.loss.LPIPS_t * LPIPS_loss
-            loss = cfg.loss.MSE_t * MSE_loss
+            loss = cfg.loss.MSE_t * MSE(outputs, y.to(torch.float))
             loss.mean().backward()
             losses.update(loss.mean().item())
 
-            #torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-            if cfg.scheduler.use==True:
+            if cfg.scheduler.use:
                 scheduler.step()
             optimizer.step()
             optimizer.zero_grad()
@@ -215,32 +202,21 @@ def train(cfg):
 
                 model.train()
 
-            if global_step % t_total == 0:
+            if global_step >= t_total:
+                done = True
                 break
         losses.reset()
-
-        if global_step % t_total == 0:
-            break
 
     logger.info("Best Loss: \t%f" % best_losses)
     logger.info("End Training!")
 
 def main():
-    dist.init_process_group(backend='nccl')
-    cfg = OmegaConf.load('configs.yaml')
+    cfg = OmegaConf.load('configs/configs.yaml')
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
                         datefmt='%m/%d/%Y %H:%M:%S',
                         level=logging.INFO)
     set_seed(cfg)
-    '''
-    model = setup(cfg)
-    print(model)
-    model.cuda()
-    dummy_input = torch.rand(1, 1, 1600, 1600).cuda()
-    with SummaryWriter(comment='Rec_Transformer') as w:
-        w.add_graph(model, (dummy_input.to(torch.float),))
-    '''
     train(cfg)
 
 

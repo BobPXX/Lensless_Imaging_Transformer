@@ -1,9 +1,9 @@
 import os
 import numpy as np
 
-pattern_path='/raid/pan/pattern_dataset/'
-ori_path='/raid/pan/ori_dataset/'
-save_path='/home/pan/Desktop/vit_rec/my0812/'
+pattern_path = '/path/to/pattern_dataset/'   # extracted from the OneDrive zips (mirflickr25k_1600, PetImages_1600, fruits_1600)
+ori_path = '/path/to/ori_dataset/'           # original images (mirflickr25k, PetImages, fruits_modified)
+save_path = './datasets/'                    # where train/val_*.npy filename lists are written
 
 #mirflickr25k
 train_ori_mk_files=[]

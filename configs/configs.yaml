@@ -1,0 +1,32 @@
+basic:
+  input_size: 1600
+  output_size: 500
+  seed: 1
+
+loss:
+  MSE_t: 1
+  LPIPS_t: 0
+
+dir:
+  save_model_dir: ./checkpoints/latest.pth
+  load_model_dir: ./checkpoints/best.pth
+  val_pattern_dir: /path/to/sample_pattern.npy   # a sample pattern used to dump a rec image at each eval
+  val_rec_dir: ./checkpoints/
+  dataset_dir: ./datasets/
+
+
+train:
+  GPU_num: 2
+  load: True
+  num_steps: 450000
+  eval_every: 15000
+  train_batch_size: 4
+
+optimizer:
+  optimizer: AdamW
+  learning_rate: 6e-5
+  weight_decay: 0.1
+
+scheduler:
+  use: True
+  warmup_steps: 0

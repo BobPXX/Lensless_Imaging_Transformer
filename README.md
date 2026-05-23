@@ -23,8 +23,8 @@ DOI: https://doi.org/10.1364/OL.455378
 
 [第38回 (2022年度) 電気通信普及財団賞](https://www.taf.or.jp/files/2061/979456817.pdf)
 
-![pipeline](./utils/diagram1.png)
-![hardware for experiment](./utils/diagram2.png)
+![pipeline](./assets/diagram1.png)
+![hardware for experiment](./assets/diagram2.png)
 
 
 # MESSAGE
@@ -74,21 +74,23 @@ The data collection method is written in page 3 of the [original paper](https://
 
 # USAGE
 ## Training
-```datasets/prepare_datasets.py``` prepares .npy files of dataset address;
-
-```configs.yaml``` defines training implementations;
-
-```train.py``` stars training.
-
-An example of running ```train.py``` in linux: 
-```
-CUDA_VISIBLE_DEVICES=0,1 nohup python -m torch.distributed.launch --nproc_per_node=1 --master_port 29501 train.py &
-```
+1. `scripts/prepare_dataset.py` writes the filename-list `.npy` files into `datasets/`. Edit `pattern_path` / `ori_path` inside the script first.
+2. `configs/configs.yaml` defines training settings (edit the paths there too).
+3. Launch from repo root:
+   ```bash
+   CUDA_VISIBLE_DEVICES=0,1 python -m scripts.train
+   ```
+   The training script uses `DataParallel`, so visible GPUs are picked up automatically.
 
 ## Prediction
-```predict.py``` starts prediction.
+```bash
+python -m scripts.predict \
+    --checkpoint checkpoints/best.pth \
+    --input-dir result/in-wild/pattern/ \
+    --output-dir result/in-wild/rec/
+```
 
-Checkpoint (```checkpoints/best.pth```) and input patterns (```result/in-wild/pattern/``` and ```result/on-screen/pattern/```) can be used to verify our results.
+The provided checkpoint `checkpoints/best.pth` and the patterns under `result/in-wild/pattern/` and `result/on-screen/pattern/` can be used to reproduce results.
 
 ## Note
 ```GrayPSF.npy``` is PSF of our lensless camera. It is not used in this reconstruction method, but a useful file to evaluate status of the optical system.

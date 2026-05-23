@@ -39,10 +39,8 @@ class OverlapPatchEmbed(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, x):
-        x = self.proj(x.type(torch.cuda.FloatTensor))
-        _, _, H, W = x.shape
+        x = self.proj(x.float())
         x = self.BN(x)
-
         return x
 
 
@@ -128,16 +126,17 @@ class AxialAttention(nn.Module):
         nn.init.normal_(self.relative, 0., math.sqrt(1. / self.group_planes))
 
 
-class Encoder_Block(nn.Module):
+class EncoderBlock(nn.Module):
 
     def __init__(self, dim, heads, kernel_size):
-        super(Encoder_Block, self).__init__()
+        super(EncoderBlock, self).__init__()
         self.height_attn = AxialAttention(in_planes=dim, out_planes=dim, groups=heads,
                                           kernel_size=kernel_size, width=False)
         self.width_attn = AxialAttention(in_planes=dim, out_planes=dim, groups=heads,
                                          kernel_size=kernel_size, width=True)
 
-        self.BN= nn.BatchNorm2d(dim)
+        self.BN1 = nn.BatchNorm2d(dim)
+        self.BN2 = nn.BatchNorm2d(dim)
         self.conv1x1_up = nn.Conv2d(dim, dim*4, kernel_size=1, stride=1, bias=False)
         self.conv1x1_down = nn.Conv2d(dim*4, dim, kernel_size=1, stride=1, bias=False)
         self.act = nn.GELU()
@@ -161,13 +160,13 @@ class Encoder_Block(nn.Module):
 
     def forward(self, x):
         h = x
-        x = self.BN(x)
+        x = self.BN1(x)
         x = self.height_attn(x)
         x = self.width_attn(x)
         x = x + h
 
         h = x
-        x = self.BN(x)
+        x = self.BN2(x)
         x = self.conv1x1_up(x)
         x = self.act(x)
         x = self.conv1x1_down(x)
@@ -194,25 +193,25 @@ class Encoder(nn.Module):
         # encoder
         self.block1=[]
         for _ in range(depths[0]):
-            self.block1.append(Encoder_Block(dim=embed_dims[0], heads=num_heads[0], kernel_size=input_size//4))
+            self.block1.append(EncoderBlock(dim=embed_dims[0], heads=num_heads[0], kernel_size=input_size//4))
         self.block1=nn.Sequential(*self.block1)
         self.norm1 = nn.BatchNorm2d(embed_dims[0])
 
         self.block2=[]
         for _ in range(depths[1]):
-            self.block2.append(Encoder_Block(dim=embed_dims[1], heads=num_heads[1], kernel_size=input_size//8))
+            self.block2.append(EncoderBlock(dim=embed_dims[1], heads=num_heads[1], kernel_size=input_size//8))
         self.block2=nn.Sequential(*self.block2)
         self.norm2 = nn.BatchNorm2d(embed_dims[1])
 
         self.block3=[]
         for _ in range(depths[2]):
-            self.block3.append(Encoder_Block(dim=embed_dims[2], heads=num_heads[2], kernel_size=input_size//16))
+            self.block3.append(EncoderBlock(dim=embed_dims[2], heads=num_heads[2], kernel_size=input_size//16))
         self.block3=nn.Sequential(*self.block3)
         self.norm3 = nn.BatchNorm2d(embed_dims[2])
 
         self.block4=[]
         for _ in range(depths[3]):
-            self.block4.append(Encoder_Block(dim=embed_dims[3], heads=num_heads[3], kernel_size=input_size//32))
+            self.block4.append(EncoderBlock(dim=embed_dims[3], heads=num_heads[3], kernel_size=input_size//32))
         self.block4=nn.Sequential(*self.block4)
         self.norm4 = nn.BatchNorm2d(embed_dims[3])
 
@@ -304,7 +303,7 @@ class Decoder(nn.Module):
 
         self.rec_size = rec_size
 
-        self.FNN1007=FNN(sum_encoder_embed_dims=sum_encoder_embed_dims,rec_channels=rec_channels)
+        self.fnn = FNN(sum_encoder_embed_dims=sum_encoder_embed_dims, rec_channels=rec_channels)
     def forward(self, x):
         s1, s2, s3, s4 = x
 
@@ -312,8 +311,7 @@ class Decoder(nn.Module):
         s2 = F.interpolate(s2, size=(self.rec_size, self.rec_size), mode='bilinear', align_corners=False)
         s3 = F.interpolate(s3, size=(self.rec_size, self.rec_size), mode='bilinear', align_corners=False)
         s4 = F.interpolate(s4, size=(self.rec_size, self.rec_size), mode='bilinear', align_corners=False)
-        s = torch.cat((s1, s2, s3, s4),1).type(torch.cuda.FloatTensor)
-        #print(s.size())
-        s = self.FNN1007(s)
+        s = torch.cat((s1, s2, s3, s4), 1).float()
+        s = self.fnn(s)
         return s
 
