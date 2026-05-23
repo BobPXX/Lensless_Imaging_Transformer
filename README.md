@@ -8,6 +8,22 @@ End-to-end Transformer-based image reconstruction for mask-based lensless camera
 
 The paper PDF is included: [`ol-47-7-1843.pdf`](./ol-47-7-1843.pdf).
 
+
+# In the news
+
+[WIRED](https://wired.jp/article/mask-based-lensless-imaging/),
+[Nikkei](https://www.nikkei.com/article/DGXZQOUC12CUO0S2A510C2000000/),
+[Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
+[EurekAlert!](https://www.eurekalert.org/news-releases/951125),
+[Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
+
+
+# Awards
+
+- [2022年度（令和4年度）手島精一記念研究賞](https://www.titech.ac.jp/news/2023/066259)
+- [第38回 (2022年度) 電気通信普及財団賞](https://www.taf.or.jp/files/2061/979456817.pdf)
+
+
 ![pipeline](./assets/diagram1.png)
 ![hardware for experiment](./assets/diagram2.png)
 
@@ -107,21 +123,6 @@ Lensless Camera based on this paper has been productized and commercialized. Her
     - My another project [reconstruction-free lensless sensing](https://github.com/BobPXX/LLI_Transformer) verified that direct object recognition on the uninterpretable encoded pattern is possible.
 
 You are warmly welcome to join me for further production development or extended research. You are also welcome for any question or discussion. Please contact me through [My LinkedIn homepage](https://www.linkedin.com/in/xiuxi-pan-ph-d-aa8868222/) or email.
-
-
-# In the news
-
-[WIRED](https://wired.jp/article/mask-based-lensless-imaging/),
-[Nikkei](https://www.nikkei.com/article/DGXZQOUC12CUO0S2A510C2000000/),
-[Phys.org](https://phys.org/news/2022-04-lensless-imaging-advanced-machine-image.html),
-[EurekAlert!](https://www.eurekalert.org/news-releases/951125),
-[Tokyo Tech News](https://www.titech.ac.jp/news/2022/063968), et al.
-
-
-# Awards
-
-- [2022年度（令和4年度）手島精一記念研究賞](https://www.titech.ac.jp/news/2023/066259)
-- [第38回 (2022年度) 電気通信普及財団賞](https://www.taf.or.jp/files/2061/979456817.pdf)
 
 
 # Notes
